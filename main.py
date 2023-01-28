@@ -44,10 +44,7 @@ def plot_state(guessed_state):
 while game_is_on:
     answer_state = screen.textinput(title=f"{format_title(score)}", prompt="Name a US State!")
     if type(answer_state) is not str or answer_state.title() == "Exit":
-        states_to_learn = []
-        for state in list_of_states:
-            if state not in guessed_states:
-                states_to_learn.append(state)
+        states_to_learn = [state for state in list_of_states if state not in guessed_states]
         df = pandas.DataFrame(states_to_learn, columns=["Learn these states: "])
         df.to_csv("states_to_learn.csv", index=False)
         break
